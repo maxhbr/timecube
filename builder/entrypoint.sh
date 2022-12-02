@@ -6,6 +6,7 @@ set -x
 west init -l time || true
 west update #-f always
 west config -l
+west zephyr-export
 west build \
     -s time \
     -p always \
