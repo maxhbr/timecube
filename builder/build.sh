@@ -7,13 +7,17 @@ repo="$(readlink -f "${context}/..")"
 bn="$(basename "$repo")"
 
 if [[ $# -gt 0 && "$1" == "clean" ]]; then
+    shift
     podman volume rm "${bn}-zephyr-modules" || true
     podman volume rm "${bn}-zephyr" || true
     podman volume rm "${bn}-zephyr-tools"|| true
     podman volume rm "${bn}-zephyr-bootloader" || true
 fi
+if [[ $# -gt 0 && "$1" == "build" ]]; then
+    shift
+    podman build "$context" --tag "zephyrbuilder"
+fi
 
-podman build "$context" --tag "zephyrbuilder"
 set -x
 podman run --rm -it \
     -v "$repo:/zephyrproject/time" \
