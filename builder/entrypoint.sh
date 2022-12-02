@@ -4,8 +4,12 @@ set -euo pipefail
 set -x
 
 west init -l ./ || true
-west update
-# west zephyr-export
+west update -f always
+west build \
+    -p always \
+    -b xiao_ble \
+    -d ./build \
+    .
 
 # for row in $(cat build.yaml |
 #         python3 -c 'import sys, yaml, json; print(json.dumps(yaml.safe_load(sys.stdin.read())))' |

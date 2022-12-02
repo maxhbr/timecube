@@ -1,11 +1,34 @@
 manifest:
   remotes:
-    - name: zmkfirmware
-      url-base: https://github.com/zmkfirmware
-  # projects:
-  #   - name: zmk
-  #     remote: zmkfirmware
-  #     revision: main
-  #     import: app/west.yml
+    - name: zephyrproject-rtos
+      url-base: https://github.com/zephyrproject-rtos
+  projects:
+    - name: zephyr
+      remote: zephyrproject-rtos
+      revision: v3.2.0
+      clone-depth: 1
+      # import:
+      #   # TODO: Rename once upstream offers option like `exclude` or `denylist`
+      #   name-blacklist:
+      #     - ci-tools
+      #     - hal_altera
+      #     - hal_cypress
+      #     - hal_infineon
+      #     - hal_microchip
+      #     - hal_nxp
+      #     - hal_openisa
+      #     - hal_silabs
+      #     - hal_xtensa
+      #     - hal_st
+      #     - hal_ti
+      #     - loramac-node
+      #     - mcuboot
+      #     - mcumgr
+      #     - net-tools
+      #     - openthread
+      #     - edtt
+      #     - trusted-firmware-m
+      #     - sof
   self:
     path: ./
+    # west-commands: scripts/west-commands.yml
