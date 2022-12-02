@@ -1,10 +1,10 @@
-FROM zmkfirmware/zmk-build-arm:stable
+FROM zephyrprojectrtos/ci:latest
+
+WORKDIR /zephyrproject
+
+ENV ZEPHYR_TOOLCHAIN_VARIANT zephyr
+
+ADD entrypoint.sh "/entrypoint.sh"
 RUN set -x \
-    && apt-get update && apt-get install -y \
-        jq \
-    && rm -rf /var/lib/apt/lists/*
-ADD entrypoint.sh /entrypoint.sh
-RUN set -x \
-    && chmod +x /entrypoint.sh
-WORKDIR /workspace
-ENTRYPOINT /entrypoint.sh
+    && sudo chmod +x "/entrypoint.sh"
+ENTRYPOINT "/entrypoint.sh"
