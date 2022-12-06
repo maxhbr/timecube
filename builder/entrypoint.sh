@@ -3,12 +3,11 @@
 set -euo pipefail
 set -x
 
-west init -l time || true
+[[ -d ".west" ]] || west init -l "$path"
 west update #-f always
 west config -l
 west zephyr-export
 west build \
-    -s time \
+    -s "$path" \
     -p always \
-    -b xiao_ble \
-    -d ./build
+    -d ./build || bash

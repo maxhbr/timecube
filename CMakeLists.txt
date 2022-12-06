@@ -8,8 +8,8 @@ cmake_minimum_required(VERSION 3.20.0)
 
 set(BOARD xiao_ble)
 
-find_package(Zephyr REQUIRED HINTS ../zephyr)
-project(timething)
+find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
+project(timecube)
 
 FILE(GLOB app_sources src/*.c)
 target_sources(app PRIVATE ${app_sources})
